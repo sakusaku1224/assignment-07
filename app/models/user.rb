@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # モデルにUploaderを紐付け
   mount_uploader :avatar, AvatarUploader
+  # リレーションを追加
+  has_many :rooms
+  has_many :reservations
 end
