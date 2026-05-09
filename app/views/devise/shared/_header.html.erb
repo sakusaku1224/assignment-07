@@ -1,0 +1,39 @@
+<nav class="nav-bar Navbar">
+  <div class="container-fluid">
+    <%= link_to root_path do %>
+      <%= image_tag "logo.png", alt: "ロゴ", class: "Navbar__logo" %>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%# アイコン・名前・ドロップダウンを表示 %>
+      <div class="dropdown">
+        <%# アイコン未設定の場合、デフォルトを表示 %>
+        <% avatar_url = current_user.avatar? ?current_user.avatar.url : "default_avatar.png" %>
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="d-flex align-items-center NavProfile">
+            <%= image_tag avatar_url, class: "Navbar__avatar", alt: "" %>
+            <span class="text-white"><%= current_user.name %></span>
+          </div>
+        </button>
+        <%# ドロップダウンメニュー %>
+        <ul class="dropdown-menu">
+          <li><%= link_to "施設の新規登録", "#", class: "dropdown-item" %></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "予約済み一覧", "#", class: "dropdown-item" %></li>
+          <li><%= link_to "登録済み一覧", "#", class: "dropdown-item" %></li>
+          <li><%= link_to "アカウント設定", "#", class: "dropdown-item" %></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %></li>
+        </ul>
+      </div>
+    <% else %>
+      <%# ログイン・新規登録ボタンを表示 %>
+      <div class="navbar-nav ">
+        <%= link_to "ログイン", new_user_session_path, class: "btn Button"%>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn Button"%>
+      </div>
+    <% end %>
+      
+    </div>
+  </div>
+</nav>
