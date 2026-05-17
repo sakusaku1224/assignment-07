@@ -1,0 +1,13 @@
+<%# 検索フォーム %>
+<div class="SearchForm">
+  <%= form_with url: rooms_path, method: :get do |f|%>
+    <div class="SearchForm__area">
+      <i class="bi bi-geo-alt-fill"></i>
+      <%= f.text_field :area, placeholder: "エリア名を入力", class: "form-control" %>
+    </div>
+    <div class="SearchForm__keyword">
+      <%= f.text_field :keyword, placeholder: "キーワードで検索", class: "form-control" %>
+    </div>
+    <%= f.submit "検索", class: "btn SearchForm__btn" %>
+  <% end %>    
+</div>

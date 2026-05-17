@@ -1,2 +1,35 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<div class="RoomDetails">
+  <div class="RoomDetail__header">
+    <%= link_to rooms_path do %>
+      <i class="bi bi-arrow-left text-primary"></i>戻る
+    <% end %>
+  </div>
+  <div class="RoomDetail">
+    <div class="RoomDetail__image">
+      <%= image_tag @room.image.url, class: "RoomDetail__image" %>
+    </div>
+    <div class="RoomDetail__info">
+      <div class="RoomDetail__title">
+        <p class="RoomDetail__name"><%= @room.name %></p>
+        <p class="RoomDetail__price">¥<%= @room.price %>~</p>
+      </div>
+      <p class="RoomDetail__address"><%= @room.address %></p>
+      <span class="RoomDetail__stars">
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+        <i class="bi bi-star-fill"></i>
+      </span>
+      <div class="RoomDetail__description"><%= @room.description %></div>
+      <%= form_with model: @room do |f| %>
+        <div class="ReservationForm">
+          <div class="ReservationForm__container">
+
+          </div>
+          <%= f.submit "予約する", class: "btn btn-primary Button"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
