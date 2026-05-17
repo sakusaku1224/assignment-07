@@ -22,13 +22,24 @@
         <i class="bi bi-star-fill"></i>
       </span>
       <div class="RoomDetail__description"><%= @room.description %></div>
-      <%= form_with model: @room do |f| %>
-        <div class="ReservationForm">
-          <div class="ReservationForm__container">
-
+      <%# 予約確認ページに遷移 %>
+      <%= form_with url: confirm_reservations_path, method: :get do |f| %>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <div class="ReservationForm__container">
+          <div class="ReservationForm__group">
+            <%= f.label :check_in, "チェックイン" %>
+            <%= f.text_field :check_in, placeholder: "---- / -- / --", id: "check_in", class: "form-control" %>
           </div>
-          <%= f.submit "予約する", class: "btn btn-primary Button"%>
+          <div class="ReservationForm__group">
+            <%= f.label :check_out, "チェックアウト" %>
+            <%= f.text_field :check_out, placeholder: "---- / -- / --", id: "check_out", class: "form-control" %>
+          </div>
+          <div class="ReservationForm__group">
+            <%= f.label :guests, "人数" %>
+            <%= f.number_field :guests, value: 0, class: "form-control" %>
+          </div>
         </div>
+        <%= f.submit "予約する", class: "btn btn-primary Button"%>
       <% end %>
     </div>
   </div>
