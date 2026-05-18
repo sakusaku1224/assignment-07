@@ -35,11 +35,16 @@
             <%= f.text_field :check_out, placeholder: "---- / -- / --", id: "check_out", class: "form-control" %>
           </div>
           <div class="ReservationForm__group">
-            <%= f.label :guests, "人数" %>
-            <%= f.number_field :guests, value: 0, class: "form-control" %>
+            <%= f.label :person_num, "人数" %>
+            <%= f.number_field :person_num, value: 0, class: "form-control" %>
           </div>
         </div>
-        <%= f.submit "予約する", class: "btn btn-primary Button"%>
+        <%# ログインしている場合は予約ボタン、そうでない場合はログインボタンを表示 %>
+        <% if user_signed_in? %>
+          <%= f.submit "予約する", class: "btn btn-primary Button"%>
+        <% else %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary Button"%>
+          <% end %>
       <% end %>
     </div>
   </div>
