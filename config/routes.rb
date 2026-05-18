@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   # 予約確認ページ
-  resources :reservations, only: [ :new, :create, :index ] do
+  resources :reservations, only: [ :new, :create, :index, :edit, :update, :destroy ] do
     collection do
       get :confirm
       post :confirm

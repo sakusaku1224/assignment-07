@@ -1,5 +1,8 @@
 class ReservationsController < ApplicationController
+  before_action :set_reservation, only: [ :edit, :update, :destroy ]
   def index
+    # @reservations = Reservation.where(user_id: current_user.id)
+    @reservations = current_user.reservations
   end
 
   def new
@@ -40,5 +43,36 @@ class ReservationsController < ApplicationController
     session[:person_num] = params[:person_num]
     session[:nights] = @nights
     session[:total_price] = @total_price
+  end
+
+  def edit
+    # 既に＠reservationを実行済み
+  end
+
+  def update
+    if @reservation.update(reservation_params)
+      redirect_to reservations_path, notice: "予約情報を更新しました"
+    else
+      flash.now[:alert] = "予約情報が不足しています"
+      render "edit", status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @reservation.destroy
+    redirect_to reservations_path, notice: "予約情報を削除しました"
+  end
+
+  private
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
+  end
+  def reservation_params
+    params.require(:reservation).permit(
+      :check_in,
+      :check_out,
+      :person_num,
+      :total_price
+    )
   end
 end
