@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
     @check_in = params[:check_in]
     @check_out = params[:check_out]
     @person_num = params[:person_num]
-    @nights = Date.parse(@check_out) - Date.parse(@check_in)
+    @nights = (Date.parse(@check_out) - Date.parse(@check_in)).to_i
     @total_price = @room.price * @person_num.to_i * @nights
     # セッションに保存
     session[:room_id] = params[:room_id]

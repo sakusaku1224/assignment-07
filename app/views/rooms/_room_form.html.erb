@@ -25,7 +25,7 @@
     <% end %>
     <%# ローカル変数のroomを使用 %>
     <div class="RoomDetail__image">
-      <%= image_tag room.image.url, class: "RoomDetail__image" %>
+      <%= image_tag room.image? ? room.image.url : "room.png", class: "RoomDetail__image" %>
     </div>
     <div class="RoomDetail__info">
       <div class="RoomDetail__title">

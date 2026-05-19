@@ -23,7 +23,7 @@
           <% @reservations.each do |reservation| %>
             <% room = reservation.room %>
             <tr>
-              <td><%= image_tag room.image.url%></td>
+              <td><%= image_tag room.image? ? room.image.url : "room.png" %></td>
               <td><%= room.name %></td>
               <td><%= room.description %></td>
               <td><%= reservation.total_price %></td>

@@ -17,11 +17,11 @@
         </button>
         <%# ドロップダウンメニュー %>
         <ul class="dropdown-menu">
-          <li><%= link_to "施設の新規登録", "#", class: "dropdown-item" %></li>
+          <li><%= link_to "施設の新規登録", new_room_path, class: "dropdown-item" %></li>
           <li><hr class="dropdown-divider"></li>
-          <li><%= link_to "予約済み一覧", "#", class: "dropdown-item" %></li>
-          <li><%= link_to "登録済み一覧", "#", class: "dropdown-item" %></li>
-          <li><%= link_to "アカウント設定", "#", class: "dropdown-item" %></li>
+          <li><%= link_to "予約済み一覧", reservations_path, class: "dropdown-item" %></li>
+          <li><%= link_to "登録済み一覧", own_rooms_path, class: "dropdown-item" %></li>
+          <li><%= link_to "アカウント設定", edit_user_registration_path, class: "dropdown-item" %></li>
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %></li>
         </ul>

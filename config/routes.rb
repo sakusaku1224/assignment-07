@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  get "reservations/index"
-  get "reservations/new"
-  get "reservations/create"
-  get "reservations/confirm"
-  get "rooms/index"
-  get "rooms/new"
-  get "rooms/create"
-  get "rooms/show"
-  get "rooms/own"
   # deviseが自動でログイン・登録ルート生成
   devise_for :users
 
@@ -15,7 +6,7 @@ Rails.application.routes.draw do
   root "rooms#index"
 
   # 登録済み施設一覧
-  resources :rooms, only: [ :index, :new, :create, :show ] do
+  resources :rooms, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
     collection do
       get :own
     end

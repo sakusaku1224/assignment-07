@@ -20,7 +20,7 @@
         <tbody>
           <% @rooms.each do |room| %>
             <tr>
-              <td><%= image_tag room.image.url%></td>
+              <td><%= image_tag room.image? ? room.image.url : "room.png" %></td>
               <td><%= link_to room.name, room_path(room) %></td>
               <td><%= room.description %></td>
               <td><%= room.price %></td>

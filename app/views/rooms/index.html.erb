@@ -54,7 +54,7 @@
   </div>
 <% else %>
   <%# 検索フォーム %>
-  <%= render "search_form" %>
+  <%= render "shared/search_form" %>
   <%# 部屋一覧 %>
   <div class="RoomsContainer container">
     <div class="RoomsContainer__result">
@@ -63,7 +63,7 @@
     <ul class="Rooms__list">
       <% @rooms.each do |room| %>
         <li class="Room__item card">
-          <%= image_tag room.image.url, alt: "部屋", class: "card-img-top" %>
+          <%= image_tag room.image? ? room.image.url : "room.png", alt: "部屋", class: "card-img-top" %>
           <div class="card-body">
             <p class="Room__name"><%= room.name%></p>
             <p class="Room__address"><%= room.address%></p>
