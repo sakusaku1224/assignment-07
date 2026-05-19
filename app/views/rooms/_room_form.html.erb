@@ -42,17 +42,17 @@
         <%= f.hidden_field :room_id, value: room.id %>
         <div class="ReservationForm__container">
           <div class="ReservationForm__group">
-            <%= f.label :check_in, "チェックイン" %>
+            <%= f.label :check_in, "チェックイン", class: "required" %>
             <%# reservation&.check_in はreservationがnilでもエラーにならない %>
             <%# showページ空欄、editページは既存の値が入る %>
             <%= f.text_field :check_in, value: reservation&.check_in, placeholder: "---- / -- / --", id: "check_in", class: "form-control" %>            
           </div>
           <div class="ReservationForm__group">
-            <%= f.label :check_out, "チェックアウト" %>
+            <%= f.label :check_out, "チェックアウト", class: "required" %>
             <%= f.text_field :check_out, value: reservation&.check_out, placeholder: "---- / -- / --", id: "check_out", class: "form-control" %>
           </div>
           <div class="ReservationForm__group">
-            <%= f.label :person_num, "人数" %>
+            <%= f.label :person_num, "人数", class: "required" %>
             <%# reservation&.person_num || 0 reservationがnilの場合0を表示する %>
             <%= f.number_field :person_num, value: reservation&.person_num || 0, class: "form-control" %>
           </div>
