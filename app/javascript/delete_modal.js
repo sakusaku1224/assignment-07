@@ -1,4 +1,14 @@
+// turbo:load と turbo:render 両方で初期化（フォーム送信後もカバー）
+["turbo:load", "turbo:render"].forEach(function (eventName) {
+  document.addEventListener(eventName, function () {
+    document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(function (el) {
+      bootstrap.Dropdown.getOrCreateInstance(el);
+    });
+  });
+});
+
 document.addEventListener("turbo:load", function () {
+
   const deleteModal = document.getElementById("deleteModal");
   if (!deleteModal) return;
   if (deleteModal.dataset.listenerAdded) return;
