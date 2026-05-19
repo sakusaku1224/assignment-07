@@ -1,7 +1,7 @@
 <div class="FormWrapper container">
   <div class="FormContainer card">
     <h2>ログイン</h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { novalidate: true }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="RoomForm__group">

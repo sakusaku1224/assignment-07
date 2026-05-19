@@ -1,7 +1,7 @@
 <div class="FormWrapper container">
   <div class="FormContainer card">
     <h2>新規登録</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, novalidate: true }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="RoomForm__group">
@@ -27,15 +27,6 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワードを再入力" %>
       </div>
 
-      <div class="RoomForm__group">
-        <%= f.label :avatar, "プロフィール画像", class: "form-label" %>
-        <%= f.file_field :avatar, class: "btn Button" %>
-      </div>
-
-      <div class="RoomForm__group">
-        <%= f.label :bio, "自己紹介", class: "form-label" %>
-        <%= f.text_area :bio, class: "form-control", placeholder: "自己紹介を入力（任意）" %>
-      </div>
 
       <%= f.submit "登録する", class: "btn btn-primary Button" %>
       <%= link_to "ログインはこちら", new_user_session_path, class: "btn btn-outline-primary Button" %>
