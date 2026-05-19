@@ -35,20 +35,20 @@ class ReservationsController < ApplicationController
     @check_out = params[:check_out]
     @person_num = params[:person_num]
 
-    # バリデーション
-    @form_errors = []
+    # バリデーション（キーでフィールドを特定できるようにハッシュで管理）
+    @form_errors = {}
     if @check_in.blank?
-      @form_errors << "チェックインを入力してください"
+      @form_errors[:check_in] = "チェックイン日を入力してください"
     elsif Date.parse(@check_in) < Date.today
-      @form_errors << "チェックインは本日以降の日付を選択してください"
+      @form_errors[:check_in] = "本日以降の日付を選択してください"
     end
     if @check_out.blank?
-      @form_errors << "チェックアウトを入力してください"
+      @form_errors[:check_out] = "チェックアウト日を入力してください"
     elsif @check_in.present? && Date.parse(@check_out) <= Date.parse(@check_in)
-      @form_errors << "チェックアウトはチェックインより後の日付を選択してください"
+      @form_errors[:check_out] = "チェックインより後の日付を選択してください"
     end
     if @person_num.to_i < 1
-      @form_errors << "人数は1人以上を入力してください"
+      @form_errors[:person_num] = "1人以上を入力してください"
     end
 
     # エラーがあればshowページを再描画

@@ -43,26 +43,24 @@
         <div class="ReservationForm__container">
           <div class="ReservationForm__group">
             <%= f.label :check_in, "チェックイン", class: "required" %>
-            <%= f.text_field :check_in, value: reservation&.check_in, placeholder: "---- / -- / --", id: "check_in", class: "form-control" %>
-            <%# チェックインのエラーメッセージ %>
-            <% @form_errors&.select { |e| e.include?("チェックイン") }&.each do |error| %>
-              <p class="text-danger"><%= error %></p>
+            <%# reservation（edit）→ @check_in（エラー時）→ nil（show）の順で値を優先 %>
+            <%= f.text_field :check_in, value: reservation&.check_in || @check_in, placeholder: "---- / -- / --", id: "check_in", class: "form-control" %>
+            <% if @form_errors&.key?(:check_in) %>
+              <p class="text-danger"><%= @form_errors[:check_in] %></p>
             <% end %>
           </div>
           <div class="ReservationForm__group">
             <%= f.label :check_out, "チェックアウト", class: "required" %>
-            <%= f.text_field :check_out, value: reservation&.check_out, placeholder: "---- / -- / --", id: "check_out", class: "form-control" %>
-            <%# チェックアウトのエラーメッセージ %>
-            <% @form_errors&.select { |e| e.include?("チェックアウト") }&.each do |error| %>
-              <p class="text-danger"><%= error %></p>
+            <%= f.text_field :check_out, value: reservation&.check_out || @check_out, placeholder: "---- / -- / --", id: "check_out", class: "form-control" %>
+            <% if @form_errors&.key?(:check_out) %>
+              <p class="text-danger"><%= @form_errors[:check_out] %></p>
             <% end %>
           </div>
           <div class="ReservationForm__group">
             <%= f.label :person_num, "人数", class: "required" %>
-            <%= f.number_field :person_num, value: reservation&.person_num || 0, class: "form-control" %>
-            <%# 人数のエラーメッセージ %>
-            <% @form_errors&.select { |e| e.include?("人数") }&.each do |error| %>
-              <p class="text-danger"><%= error %></p>
+            <%= f.number_field :person_num, value: reservation&.person_num || @person_num || 0, class: "form-control" %>
+            <% if @form_errors&.key?(:person_num) %>
+              <p class="text-danger"><%= @form_errors[:person_num] %></p>
             <% end %>
           </div>
         </div>
