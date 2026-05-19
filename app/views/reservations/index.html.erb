@@ -27,9 +27,9 @@
               <td><%= room.name %></td>
               <td><%= room.description %></td>
               <td><%= reservation.total_price %></td>
-              <td><%= reservation.check_in %></td>
-              <td><%= reservation.check_out %></td>
-              <td><%= reservation.created_at %></td>
+              <td><%= reservation.check_in.to_fs(:date_jp) %></td>
+              <td><%= reservation.check_out.to_fs(:date_jp) %></td>
+              <td><%= reservation.created_at.to_fs(:datetime_jp) %></td>
               <td>
                 <div class="drop-down">
                   <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>

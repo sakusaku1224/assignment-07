@@ -24,7 +24,7 @@
               <td><%= link_to room.name, room_path(room) %></td>
               <td><%= room.description %></td>
               <td><%= room.price %></td>
-              <td><%= room.created_at %></td>
+              <td><%= room.created_at.to_fs(:datetime_jp) %></td>
               <td>
                 <div class="drop-down">
                   <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>
