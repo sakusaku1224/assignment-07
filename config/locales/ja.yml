@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザー名"
+        bio: "自己紹介"
+      room:
+        name: "施設名"
+        description: "施設詳細"
+        price: "料金"
+        address: "住所"
+      reservation:
+        check_in: "チェックイン"
+        check_out: "チェックアウト"
+        person_num: "人数"
+        total_price: "お支払い金額"
+    errors:
+      messages:
+        blank: "を入力してください"
+        too_long: "は%{count}文字以内で入力してください"
+        not_a_number: "は数値で入力してください"
+        greater_than_or_equal_to: "は%{count}以上の値にしてください"
+        greater_than: "は%{count}より大きい値にしてください"

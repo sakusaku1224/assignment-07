@@ -5,7 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # モデルにUploaderを紐付け
   mount_uploader :avatar, AvatarUploader
-  # リレーションを追加
+  # リレーション
   has_many :rooms
   has_many :reservations
+
+  # バリデーション
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :bio, length: { maximum: 140 }
 end

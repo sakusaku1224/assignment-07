@@ -34,6 +34,29 @@ class ReservationsController < ApplicationController
     @check_in = params[:check_in]
     @check_out = params[:check_out]
     @person_num = params[:person_num]
+
+    # バリデーション
+    @form_errors = []
+    if @check_in.blank?
+      @form_errors << "チェックインを入力してください"
+    elsif Date.parse(@check_in) < Date.today
+      @form_errors << "チェックインは本日以降の日付を選択してください"
+    end
+    if @check_out.blank?
+      @form_errors << "チェックアウトを入力してください"
+    elsif @check_in.present? && Date.parse(@check_out) <= Date.parse(@check_in)
+      @form_errors << "チェックアウトはチェックインより後の日付を選択してください"
+    end
+    if @person_num.to_i < 1
+      @form_errors << "人数は1人以上を入力してください"
+    end
+
+    # エラーがあればshowページを再描画
+    if @form_errors.any?
+      render "rooms/show"
+      return
+    end
+
     @nights = (Date.parse(@check_out) - Date.parse(@check_in)).to_i
     @total_price = @room.price * @person_num.to_i * @nights
     # セッションに保存
