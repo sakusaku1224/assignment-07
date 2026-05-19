@@ -46,7 +46,8 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    # 既に＠reservationを実行済み
+    # 既に＠reservation取得済み
+    @room = @reservation.room
   end
 
   def update

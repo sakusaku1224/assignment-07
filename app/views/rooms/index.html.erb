@@ -68,13 +68,7 @@
             <p class="Room__name"><%= room.name%></p>
             <p class="Room__address"><%= room.address%></p>
             <%# 星 %>
-            <span class="Room__stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </span>
+            <%= render "shared/stars" %>
             <p class="Room__description"><%= room.description%></p>
             <p class="Room__price">¥<%= room.price%>~</p>
             <%= link_to "詳細はこちら", room_path(room), class: "btn Room__btn"%>
