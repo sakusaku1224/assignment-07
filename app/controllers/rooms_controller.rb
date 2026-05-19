@@ -30,6 +30,7 @@ class RoomsController < ApplicationController
   end
 
   def own
+    @rooms = current_user.rooms
   end
 
   private

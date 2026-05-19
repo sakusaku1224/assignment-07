@@ -1,2 +1,70 @@
-<h1>Rooms#own</h1>
-<p>Find me in app/views/rooms/own.html.erb</p>
+<div class="ReservationsContainer container">
+  <h2 class="ReservationsContainer__title">登録済み施設一覧</h2>
+  <% if @rooms.empty? %>
+    <div class="text-center text-muted py-5">
+      <p>登録施設がありません</p>
+    </div>
+  <% else%>
+    <div class="table-responsive">
+      <table class="ReservationsTable">
+        <thead>
+          <tr>
+            <th>画像</th>
+            <th>施設名</th>
+            <th>紹介文</th>
+            <th>料金</th>
+            <th>作成日</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @rooms.each do |room| %>
+            <tr>
+              <td><%= image_tag room.image.url%></td>
+              <td><%= link_to room.name, room_path(room) %></td>
+              <td><%= room.description %></td>
+              <td><%= room.price %></td>
+              <td><%= room.created_at %></td>
+              <td>
+                <div class="drop-down">
+                  <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "編集", edit_room_path(room), class: "dropdown-item" %></li>
+                    <li><%= link_to "削除", "#",
+                        data:{
+                          "bs-toggle": "modal",
+                          "bs-target": "#deleteModal",
+                          "delete-url": room_path(room),
+                          "delete-name": room.name,
+                          "delete-description": room.description,
+                          "delete-price": room.price
+                        }%>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end%>
+  <%# モーダル %>
+  <div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">施設の削除</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>この施設を削除しますか？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+          <%= button_to "OK", "", method: :delete, id: "deleteConfirmBtn", class: "btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
