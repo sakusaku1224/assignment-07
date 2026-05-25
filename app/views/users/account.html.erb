@@ -1,0 +1,22 @@
+<section class="UserSection">
+  <h2>設定</h2>
+  <div class="UserContainer container">
+    <%= render "shared/settings_nav" %>
+    <div class="SettingsInfo">
+      <div class="SettingsInfo__header">
+        <h3>アカウント</h3>
+        <%= link_to edit_user_registration_path do %>
+          <i class="bi bi-pencil-fill"></i>編集
+        <% end %>
+      </div>
+      <div class="SettingsInfo__group">
+        <p class="SettingsInfo__label">メールアドレス</p>
+        <p class="SettingsInfo__value"><%= current_user.email %></p>
+      </div>
+      <div class="SettingsInfo__group">
+        <p class="SettingsInfo__label">パスワード</p>
+        <p class="SettingsInfo__value">********</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+<section class="UserSection">
+  <h2>設定</h2>
+  <div class="UserContainer container">
+    <%= render "shared/settings_nav" %>
+    <div class="SettingsInfo">
+      <div class="SettingsInfo__header">
+        <h3>プロフィール</h3>
+        <%= link_to edit_profile_users_path do %>
+          <i class="bi bi-pencil-fill"></i>編集
+        <% end %>
+      </div>
+      <div class="SettingsInfo__group">
+        <p class="SettingsInfo__label">アイコン画像</p>
+        <%= image_tag current_user.avatar? ? current_user.avatar.url : "default_avatar.png", class: "Avatar", alt: "アイコン画像" %>
+      </div>
+      <div class="SettingsInfo__group">
+        <p class="SettingsInfo__label">名前</p>
+        <p class="SettingsInfo__value"><%= current_user.name %></p>
+      </div>
+      <div class="SettingsInfo__group">
+        <p class="SettingsInfo__label">自己紹介</p>
+        <p class="SettingsInfo__value"><%= current_user.bio %></p>
+      </div>
+    </div>
+  </div>
+</section>

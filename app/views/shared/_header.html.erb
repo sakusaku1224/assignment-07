@@ -11,7 +11,7 @@
         <% avatar_url = current_user.avatar? ?current_user.avatar.url : "default_avatar.png" %>
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <div class="d-flex align-items-center NavProfile">
-            <%= image_tag avatar_url, class: "Navbar__avatar", alt: "" %>
+            <%= image_tag avatar_url, class: "Navbar__avatar Avatar", alt: "" %>
             <span class="text-white"><%= current_user.name %></span>
           </div>
         </button>
@@ -21,7 +21,7 @@
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "予約済み一覧", reservations_path, class: "dropdown-item" %></li>
           <li><%= link_to "登録済み一覧", own_rooms_path, class: "dropdown-item" %></li>
-          <li><%= link_to "アカウント設定", edit_user_registration_path, class: "dropdown-item" %></li>
+          <li><%= link_to "アカウント設定", account_users_path, class: "dropdown-item" %></li>
           <li><hr class="dropdown-divider"></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %></li>
         </ul>

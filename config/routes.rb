@@ -20,6 +20,16 @@ Rails.application.routes.draw do
     end
   end
 
+  # アカウントページ
+  resources :users, only: [] do
+    collection do
+      get  :account
+      get  :profile
+      get  :edit_profile
+      patch :update_profile
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
