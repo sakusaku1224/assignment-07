@@ -30,10 +30,10 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem 'devise'
-gem 'carrierwave', '~> 3.0'
-gem 'mini_magick'
-gem 'flatpickr'
+gem "devise"
+gem "carrierwave", "~> 3.0"
+gem "mini_magick"
+gem "flatpickr"
 gem "rails-i18n"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -59,4 +59,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  # Rails 7.2系はminitest 6系のAPI変更に未対応のためバージョンを固定
+  gem "minitest", "< 6"
 end

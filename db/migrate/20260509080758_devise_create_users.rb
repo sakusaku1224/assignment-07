@@ -7,7 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.2]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
-      #独自カラムを追加するためカラムを追加
+      # 独自カラムを追加するためカラムを追加
       t.string :name, null: false, default: ""
       t.string :avatar   # アイコン画像のファイル名を保存
       t.text   :bio      # 自己紹介

@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     # 新規登録時に name, avatar, bio を許可
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar, :bio])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :avatar, :bio ])
     # アカウント更新時に name, avatar, bio を許可
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar, :bio])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :avatar, :bio ])
   end
 end

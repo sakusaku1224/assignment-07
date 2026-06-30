@@ -1,28 +1,35 @@
 require "test_helper"
 
 class RoomsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @room = rooms(:one)
+    sign_in users(:one)
+  end
+
   test "should get index" do
-    get rooms_index_url
+    get rooms_path
     assert_response :success
   end
 
   test "should get new" do
-    get rooms_new_url
+    get new_room_path
     assert_response :success
   end
 
-  test "should get create" do
-    get rooms_create_url
-    assert_response :success
+  test "should create room" do
+    assert_difference("Room.count") do
+      post rooms_path, params: { room: { name: "新しい部屋", description: "説明", price: 1000, address: "東京都" } }
+    end
+    assert_redirected_to room_path(Room.last)
   end
 
   test "should get show" do
-    get rooms_show_url
+    get room_path(@room)
     assert_response :success
   end
 
   test "should get own" do
-    get rooms_own_url
+    get own_rooms_path
     assert_response :success
   end
 end
