@@ -1,0 +1,32 @@
+<%= form_with url: reservations_path do |f| %>
+  <div class="FormWrapper container">
+    <div class="FormConfirm card">
+      <h2 class="FormConfirm__title">予約の確認</h2>
+      <div class="FormConfirm__group">
+        <p class="FormConfirm__label">チェックイン</p>
+        <p class="FormConfirm__value"><%= @check_in %></p>
+      </div>
+      <div class="FormConfirm__group">
+        <p class="FormConfirm__label">チェックアウト</p>
+        <p class="FormConfirm__value"><%= @check_out %></p>
+      </div>
+      <div class="FormConfirm__group">
+        <p class="FormConfirm__label">日数</p>
+        <p class="FormConfirm__value"><%= @nights %></p>
+      </div>
+      <div class="FormConfirm__group">
+        <p class="FormConfirm__label">人数</p>
+        <p class="FormConfirm__value"><%= @person_num %>人</p>
+      </div>
+      <div class="FormConfirm__group">
+        <p class="FormConfirm__label">お支払い金額</p>
+        <p class="FormConfirm__value">¥<%= @total_price %></p>
+      </div>
+      <p class="FormConfirm__description">
+        上記の内容で正しければ「確定」ボタンを押してください。
+      </p>
+      <%= f.submit "予約を確定", class: "btn" %>
+      <%= link_to "キャンセル", :back, class: "btn" %>
+    </div>
+  </div>
+<% end%>

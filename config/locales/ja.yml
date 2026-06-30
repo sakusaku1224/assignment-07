@@ -1,0 +1,60 @@
+ja:
+  errors:
+    messages:
+      not_saved:
+        one: "エラーが1件あります"
+        other: "%{count}件のエラーがあります"
+
+  devise:
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+      already_signed_in: "すでにログインしています"
+    registrations:
+      signed_up: "アカウント登録が完了しました"
+      updated: "アカウント情報を更新しました"
+      destroyed: "アカウントを削除しました"
+      update_needs_confirmation: "アカウント情報を更新しましたが、メールアドレスの確認が必要です"
+    passwords:
+      send_instructions: "パスワードのリセット方法をメールでご連絡します"
+      updated: "パスワードを変更しました"
+    failure:
+      already_authenticated: "すでにログインしています"
+      unauthenticated: "ログインしてください"
+      invalid: "メールアドレスまたはパスワードが違います"
+      not_found_in_database: "メールアドレスまたはパスワードが違います"
+      locked: "アカウントはロックされています"
+      timeout: "セッションがタイムアウトしました"
+      inactive: "アカウントが有効化されていません"
+
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザー名"
+        bio: "自己紹介"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        current_password: "現在のパスワード"
+      room:
+        name: "施設名"
+        description: "施設詳細"
+        price: "料金"
+        address: "住所"
+        image: "画像"
+      reservation:
+        check_in: "チェックイン"
+        check_out: "チェックアウト"
+        person_num: "人数"
+        total_price: "お支払い金額"
+    errors:
+      messages:
+        blank: "を入力してください"
+        too_long: "は%{count}文字以内で入力してください"
+        too_short: "は%{count}文字以上で入力してください"
+        not_a_number: "は数値で入力してください"
+        greater_than_or_equal_to: "は%{count}以上の値にしてください"
+        greater_than: "は%{count}より大きい値にしてください"
+        taken: "はすでに使用されています"
+        invalid: "は有効な値ではありません"
+        confirmation: "と%{attribute}の入力が一致しません"

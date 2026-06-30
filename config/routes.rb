@@ -1,8 +1,35 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # deviseが自動でログイン・登録ルート生成
+  devise_for :users
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # トップページ
+  root "rooms#index"
+
+  # 登録済み施設一覧
+  resources :rooms, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
+    collection do
+      get :own
+    end
+  end
+
+  # 予約確認ページ
+  resources :reservations, only: [ :new, :create, :index, :edit, :update, :destroy ] do
+    collection do
+      get :confirm
+      post :confirm
+    end
+  end
+
+  # アカウントページ
+  resources :users, only: [] do
+    collection do
+      get  :account
+      get  :profile
+      get  :edit_profile
+      patch :update_profile
+    end
+  end
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*

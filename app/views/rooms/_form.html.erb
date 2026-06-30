@@ -1,0 +1,34 @@
+<div class="FormWrapper container">
+  <div class="FormContainer">
+    <h2><%= title %></h2>
+    <%= form_with model: @room, multipart: true do |f| %>
+      <%# 施設名・施設詳細・料金・住所・画像・ボタン %>
+      <div class="RoomForm__group">
+        <%= f.label :name, "施設名", class: "form-label required" %>
+        <%= f.text_field :name, class: "form-control", placeholder: "ルーム名を入力" %>
+        <%= error_message_for(@room, :name) %>
+      </div>
+      <div class="RoomForm__group">
+        <%= f.label :description, "施設詳細", class: "form-label required" %>
+        <%= f.text_area :description, class: "form-control", placeholder: "施設詳細を入力" %>
+        <%= error_message_for(@room, :description) %>
+      </div>
+      <div class="RoomForm__group">
+        <%= f.label :price, "料金", class: "form-label required" %>
+        <%= f.text_field :price, class: "form-control", placeholder: "1日あたりの料金を入力" %>
+        <%= error_message_for(@room, :price) %>
+      </div>
+      <div class="RoomForm__group">
+        <%= f.label :address, "住所", class: "form-label required" %>
+        <%= f.text_field :address, class: "form-control", placeholder: "住所を入力" %>
+        <%= error_message_for(@room, :address) %>
+      </div>
+      <div class="RoomForm__group">
+        <%= f.label :image, "画像", class: "form-label required" %>
+        <%= f.file_field :image, class: "btn Button" %>
+      </div>
+      <%= f.submit "保存", class: "btn btn-primary Button"%>
+      <%= link_to "キャンセル", :back , class: "btn btn-primary Button"%>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<% if params[:area].nil? %>
+<%# 空検索の場合、全件表示の検索結果ページに遷移する %>
+  <div class="Hero">
+    <section class="container">
+      <h2 class="Hero__title">
+        Potepan Shareで<br>
+        まだ体験したことのない<br>
+        旅をしよう
+      </h2>
+      <div class="HeroSearch">
+        <%= form_with url: rooms_path, method: :get do |f|%>
+          <%= f.text_field :area, placeholder: "エリア名を入力", class: "form-control HeroSearch__form" %>
+          <%= f.submit "検索", class: "btn HeroSearch__btn" %>
+        <% end %>
+      </div>
+    </section>  
+  </div>
+  <div class="container">
+    <section class="RecommendArea">
+      <h2 class="RecommendArea__title">
+        おすすめのエリア
+      </h2>
+      <div class="RecommendArea__cards">
+        <%= link_to rooms_path(area: "東京"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('tokyo.png')}')" do %>
+          <span class="RecommendArea__name">東京</span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Tokyo</span>
+        <% end %>
+        <%= link_to rooms_path(area: "大阪"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('osaka.png')}')" do %>
+          <span class="RecommendArea__name">大阪</span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Osaka</span>
+        <% end %>
+        <%= link_to rooms_path(area: "京都"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('kyoto.png')}')" do %>
+          <span class="RecommendArea__name">京都</span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Kyoto</span>
+        <% end %>
+        <%= link_to rooms_path(area: "札幌"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('sapporo.png')}')" do %>
+          <span class="RecommendArea__name">札幌</span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Sapporo</span>
+        <% end %>
+      </div>
+    </section>
+  </div>
+<% else %>
+  <%# 検索フォーム %>
+  <%= render "shared/search_form" %>
+  <%# 部屋一覧 %>
+  <div class="RoomsContainer container">
+    <div class="RoomsContainer__result">
+      <p class="Rooms__count"><span class="Rooms__count__num"><%= @rooms.count%></span>件が見つかりました。</p>
+    </div>
+    <ul class="Rooms__list">
+      <% @rooms.each do |room| %>
+        <li class="Room__item card">
+          <%= image_tag room.image? ? room.image.url : "room.png", alt: "部屋", class: "card-img-top" %>
+          <div class="card-body">
+            <p class="Room__name"><%= room.name%></p>
+            <p class="Room__address"><%= room.address%></p>
+            <%# 星 %>
+            <%= render "shared/stars" %>
+            <p class="Room__description"><%= room.description%></p>
+            <p class="Room__price">¥<%= room.price%>~</p>
+            <%= link_to "詳細はこちら", room_path(room), class: "btn Room__btn"%>
+          </div>
+        </li>
+      <% end%>
+    </ul>
+  </div>
+<% end %>

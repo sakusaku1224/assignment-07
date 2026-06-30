@@ -1,0 +1,78 @@
+<div class="ReservationsContainer container">
+  <h2 class="ReservationsContainer__title">予約済み一覧</h2>
+  <% if @reservations.empty? %>
+    <div class="text-center text-muted py-5">
+      <p>予約がありません</p>
+    </div>
+  <% else%>
+    <div class="table-responsive">
+      <table class="ReservationsTable">
+        <thead>
+          <tr>
+            <th>画像</th>
+            <th>施設名</th>
+            <th>紹介文</th>
+            <th>合計料金</th>
+            <th>チェックイン</th>
+            <th>チェックアウト</th>
+            <th>予約確定日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reservations.each do |reservation| %>
+            <% room = reservation.room %>
+            <tr>
+              <td><%= image_tag room.image? ? room.image.url : "room.png" %></td>
+              <td><%= room.name %></td>
+              <td><%= room.description %></td>
+              <td><%= reservation.total_price %></td>
+              <td><%= reservation.check_in.to_fs(:date_jp) %></td>
+              <td><%= reservation.check_out.to_fs(:date_jp) %></td>
+              <td><%= reservation.created_at.to_fs(:datetime_jp) %></td>
+              <td>
+                <div class="drop-down">
+                  <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "予約変更", edit_reservation_path(reservation), class: "dropdown-item" %></li>
+                    <li><%= link_to "予約キャンセル", "#",
+                        data:{
+                          "bs-toggle": "modal",
+                          "bs-target": "#deleteModal",
+                          "delete-url": reservation_path(reservation),
+                          "delete-name": room.name,
+                          "delete-checkin": reservation.check_in,
+                          "delete-checkout": reservation.check_out,
+                          "delete-person-num": reservation.person_num,
+                          "delete-total-price": reservation.total_price
+                        }%>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end%>
+  <%# モーダル %>
+  <div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">予約の削除</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="deleteModalBody"></p>
+          <p>この予約を削除しますか？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+          <%= button_to "OK", "", method: :delete, id: "deleteConfirmBtn", class: "btn btn-primary"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
