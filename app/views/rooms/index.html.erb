@@ -9,8 +9,8 @@
       </h2>
       <div class="HeroSearch">
         <%= form_with url: rooms_path, method: :get do |f|%>
-          <%= f.text_field :area, placeholder: "エリア名を入力" %>
-          <%= f.submit "検索", class: "btn" %>
+          <%= f.text_field :area, placeholder: "エリア名を入力", class: "form-control HeroSearch__form" %>
+          <%= f.submit "検索", class: "btn HeroSearch__btn" %>
         <% end %>
       </div>
     </section>  
@@ -21,33 +21,25 @@
         おすすめのエリア
       </h2>
       <div class="RecommendArea__cards">
-        <%= link_to rooms_path(area: "東京") do %>
-          <%= image_tag "tokyo.png", alt: "東京", class: "RecommendArea__img" %>
+        <%= link_to rooms_path(area: "東京"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('tokyo.png')}')" do %>
           <span class="RecommendArea__name">東京</span>
-          <span>
-            <i class="bi bi-geo-alt-fill"></i> Tokyo
-          </span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Tokyo</span>
         <% end %>
-        <%= link_to rooms_path(area: "大阪") do %>
-          <%= image_tag "osaka.png", alt: "大阪", class: "RecommendArea__img" %>
+        <%= link_to rooms_path(area: "大阪"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('osaka.png')}')" do %>
           <span class="RecommendArea__name">大阪</span>
-          <span>
-            <i class="bi bi-geo-alt-fill"></i> Osaka
-          </span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Osaka</span>
         <% end %>
-        <%= link_to rooms_path(area: "京都") do %>
-          <%= image_tag "kyoto.png", alt: "京都", class: "RecommendArea__img" %>
+        <%= link_to rooms_path(area: "京都"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('kyoto.png')}')" do %>
           <span class="RecommendArea__name">京都</span>
-          <span>
-            <i class="bi bi-geo-alt-fill"></i> Kyoto
-          </span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Kyoto</span>
         <% end %>
-        <%= link_to rooms_path(area: "札幌") do %>
-          <%= image_tag "sapporo.png", alt: "札幌", class: "RecommendArea__img" %>
+        <%= link_to rooms_path(area: "札幌"), class: "RecommendArea__card",
+            style: "background-image: url('#{asset_path('sapporo.png')}')" do %>
           <span class="RecommendArea__name">札幌</span>
-          <span>
-            <i class="bi bi-geo-alt-fill"></i> Sapporo
-          </span>
+          <span class="RecommendArea__en"><i class="bi bi-geo-alt-fill"></i> Sapporo</span>
         <% end %>
       </div>
     </section>

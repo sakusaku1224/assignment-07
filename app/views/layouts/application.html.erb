@@ -32,11 +32,11 @@
     <%= render "shared/header" %>
 
     <%# フラッシュメッセージ %>
-    <% flash.each do |message_type, message|%>
+    <% flash.each do |message_type, message| %>
       <div class="alert alert-<%= message_type %> toast-flash">
-        <%= message%>
+        <%= message %>
       </div>
-    <% end %>    
+    <% end %>
     <%= yield %>
 
     <%# フッター %>
