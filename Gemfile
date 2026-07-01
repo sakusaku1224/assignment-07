@@ -60,5 +60,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   # Rails 7.2系はminitest 6系のAPI変更に未対応のためバージョンを固定
-  gem "minitest", "< 6"
+  gem "minitest", "< 7"
 end
